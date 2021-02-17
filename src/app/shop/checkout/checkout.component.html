@@ -1,0 +1,82 @@
+<navbar></navbar>
+
+<div class="container pt-100 mb-5">
+  <div *ngIf="orderSent" class="m-2 text-center">
+    <h2>Teşekkür ederiz</h2>
+    <p>Siparişiniz kayıt edildi.</p>
+    <button class="btn btn-primary" routerLink="/shop">
+      Alışverişe devam et.
+    </button>
+  </div>
+
+  <form
+    *ngIf="!orderSent"
+    #form="ngForm"
+    (ngSubmit)="submitOrder(form)"
+    class="m-3"
+  >
+    <div class="form-group">
+      <label for="">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        #name="ngModel"
+        [(ngModel)]="order.name"
+        required
+        name="name"
+      />
+      <span *ngIf="submitted && name.invalid" class="text-danger"
+        >Lütfen adınızı giriniz.</span
+      >
+    </div>
+    <div class="form-group">
+      <label for="">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        #address="ngModel"
+        [(ngModel)]="order.address"
+        required
+        name="address"
+      />
+    </div>
+    <span *ngIf="submitted && address.invalid" class="text-danger"
+      >Lütfen e-mail giriniz.</span
+    >
+
+    <div class="form-group">
+      <label for="">City</label>
+      <input
+        type="text"
+        class="form-control"
+        #city="ngModel"
+        [(ngModel)]="order.city"
+        required
+        name="city"
+      />
+      <span *ngIf="submitted && city.invalid" class="text-danger"
+        >Lütfen şehir giriniz.</span
+      >
+    </div>
+    <div class="form-group">
+      <label for="">Phone</label>
+      <input
+        type="text"
+        class="form-control"
+        #phone="ngModel"
+        [(ngModel)]="order.phone"
+        required
+        name="phone"
+      />
+      <span *ngIf="submitted && phone.invalid" class="text-danger"
+        >Lütfen telefon numarası giriniz.</span
+      >
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary mr-3">Kaydet</button>
+      <button routerLink="/shop" class="btn btn-primary">
+        Alışverişe devam et
+      </button>
+    </div>
+  </form>
+</div>
