@@ -4,11 +4,13 @@ import { Observable } from 'rxjs';
 import { Category } from './category.model';
 import { Order } from './order.model';
 import { Product } from './product.model';
+import {map} from 'rxjs/operators'; 
 
 @Injectable()
 export class RestService {
 
-  baseUrl:string="http://localhost:3500/";
+  baseUrl:string = "http://localhost:3500/";
+  token: any = null;
 
   constructor(private http: HttpClient) { 
 
@@ -21,5 +23,15 @@ export class RestService {
   }
   saveOrder(order: Order):Observable<Order>{
     return this.http.post<Order>(this.baseUrl + 'orders', order);
+  }
+  authentication(username: string, password: string): Observable<boolean> {
+    return this.http.post<any>(this.baseUrl + 'login', {
+      username: username,
+      password: password
+    }).pipe(map(response => {
+      this.token = response.success ? response.token : null;
+      console.log(this.token);
+      return response.success;
+    })); 
   }
 }

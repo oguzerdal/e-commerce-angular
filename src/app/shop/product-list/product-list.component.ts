@@ -9,12 +9,13 @@ import { Product } from 'src/app/model/product.model';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
- 
- 
- 
-  @Input() products: Product[] = [] ;
-  
-  
+
+  selectedProduct: Product | null = null;
+
+
+  @Input() products: Product[] = [];
+
+
   constructor(
     private cart: Cart,
     private router: Router
@@ -25,6 +26,13 @@ export class ProductListComponent implements OnInit {
   addProductToCart(product: Product) {
     this.cart.addCartItem(product)
     this.router.navigateByUrl('cart')
-}
+  }
+  displayDetails(product: Product) {
+    this.selectedProduct = product;
+  }
+  hideDetails() {
+    this.selectedProduct = null;
+  }
+
 
 } 

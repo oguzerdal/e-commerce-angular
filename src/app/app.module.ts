@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
+import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CartDetailComponent } from './shop/cart-detail/cart-detail.component';
@@ -17,14 +19,16 @@ import { ShopModule } from './shop/shop.module';
     BrowserModule,
     AppRoutingModule,
     ShopModule,
+    AdminModule,
     RouterModule.forRoot(
       [
-        {path: 'shop' , component: ShopComponent},
+        {path:'shop' , component: ShopComponent},
         {path:'cart', component:CartDetailComponent},
         {path:'checkout',component:CheckoutComponent},
+        {path:'admin', loadChildren:'./admin/admin.module#AdminModule'},
         {path:'**', redirectTo:"/shop"}
       ]
-    )
+    )   
   ],
   providers: [],
   bootstrap: [AppComponent]
