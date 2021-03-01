@@ -2,13 +2,14 @@
   <div class="row">
     <div class="col bg-primary p-2 text-white">Admin Panel</div>
   </div>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-3">
       <button routerLink="/shop" class="btn btn-outline-info btn-block">
         Shop
       </button>
 
       <button
+        routerLinkActive="active"
         routerLink="/admin/main/products"
         class="btn btn-outline-info btn-block"
       >
@@ -16,10 +17,19 @@
       </button>
 
       <button
+        routerLinkActive="active"
         routerLink="/admin/main/categories"
         class="btn btn-outline-info btn-block"
       >
         Categories
+      </button>
+
+      <button
+        routerLinkActive="active"
+        routerLink="/admin/main/orders"
+        class="btn btn-outline-info btn-block"
+      >
+        Orders
       </button>
 
       <button (click)="logout()" class="btn btn-outline-danger btn-block">
@@ -27,15 +37,8 @@
       </button>
     </div>
 
-    <button
-    routerLink="/admin/main/orders"
-    class="btn btn-outline-info btn-block"
-  >
-    Orders
-  </button>
-
     <div class="col-9">
-      <router-outlet></router-outlet>
+       <router-outlet></router-outlet> <!-- kullanıcı yukarıdaki butonlardan pathleri değiştikçe buraya route modulde belittiğimiz componentler yükleniyor -->
     </div>
   </div>
 </div>

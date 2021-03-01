@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from './category.model';
@@ -33,5 +33,19 @@ export class RestService {
       console.log(this.token);
       return response.success;
     })); 
+  }
+  addProduct(product: Product): Observable<Product>{
+    return this.http.post<Product>(this.baseUrl + "products", product, {
+      headers: new  HttpHeaders({
+        "Authorization": `Bearer<${this.token}>`
+    })
+    })  
+  }
+  updateProduct(product: Product): Observable<Product>{
+    return this.http.put<Product>(this.baseUrl + "products/" + product.id, product,{
+      headers: new  HttpHeaders({
+        "Authorization": `Bearer<${this.token}>`
+    })
+    })  
   }
 }
